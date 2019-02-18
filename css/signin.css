@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+#signin-content .content-body {
+  display                 : -webkit-flex;
+  display                 :         flex;
+  -webkit-align-items     : center;
+          align-items     : center;
+  -webkit-flex-direction  : column;
+          flex-direction  : column;
+  -webkit-justify-content : center;
+          justify-content : center;
+  width                   : 330px;
+  max-width               : 100%;
+  min-height              : 100%;
+  padding                 : 16px;
+  margin-right            : auto;
+  margin-left             : auto;
+}
+
+#signin-content .close {
+  position : absolute;
+  top      : 10px;
+  right    : 10px;
+}
+
+#signin-content .form-control {
+  position : relative;
+  height   : auto;
+  padding  : 10px;
+}
+#signin-content .form-control:focus {
+  z-index : 1;
+}
+
+#signin-content input {
+  margin-bottom : -1px;
+  border-radius : 0;
+}
+#signin-content input:first-of-type {
+  border-top-right-radius : 4px;
+  border-top-left-radius  : 4px;
+}
+#signin-content input:last-of-type {
+  margin-bottom              : 10px;
+  border-bottom-right-radius : 4px;
+  border-bottom-left-radius  : 4px;
+}

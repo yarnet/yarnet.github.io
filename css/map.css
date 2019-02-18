@@ -1,0 +1,961 @@
+@charset "UTF-8";
+
+/* ホテルのサムネイル表示 */
+.HotelImages{
+  width:64px;
+  height:64px;
+  cursor:pointer;
+}
+
+#hotel_info{
+  padding:10px;
+}
+
+.route-massage{
+  text-align: center;
+  background:bisque;
+}
+
+.infowindow{
+  text-overflow: ellipsis;
+  overflow:hidden;
+  white-space: nowrap;
+  width:175px;
+}
+
+.media-body{
+  position:relative;
+  font-size:12px;
+  margin-left: 10px;
+  max-width:calc(100% - 74px);
+}
+.media-body h6{
+  text-overflow: ellipsis;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.hotel-address{
+  text-overflow: ellipsis;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#hotel_info .media{
+  border-bottom:1px solid #ccc;
+  padding: 10px;
+}
+
+#map-content {
+  font-family : sans-serif;
+  text-align  : left;
+}
+
+#map {
+  width  : 100%;
+  height : 100%;
+}
+
+
+/* 検索フォーム */
+
+.left-drawer-toggle {
+  position : absolute;
+  top      : 10px;
+  right    : -40px;
+  z-index  : 500;
+  cursor   : pointer;
+}
+
+.left-drawer {
+  position               : fixed;
+  top                    : 0;
+  bottom                 : 0;
+  left                   : -85%;
+  z-index                : 500;
+  display                : -webkit-flex;
+  display                :         flex;
+  -webkit-flex-direction : column;
+          flex-direction : column;
+  width                  : 450px;
+  height                 : 100%;
+  max-width              : 85%;
+  background-color       : #fff;
+  transition             : left 300ms ease-out;
+  z-index                : 600;
+}
+@media (min-width: calc(450px / 0.85)) {
+  .left-drawer {
+    left : -450px;
+  }
+}
+
+.left-drawer.show {
+  left : 0;
+}
+
+.left-drawer > header {
+  padding: 10px;
+  background-color: #EEEEEE;
+}
+
+.left-drawer .tab-content {
+  height     : 100%;
+  max-width: : 80%;
+  overflow-y : auto;
+}
+
+.left-drawer .nav-link {
+  padding-bottom : 3px;
+  margin-bottom  : 5px;
+}
+
+.drawer-backdrop {
+  position : fixed;
+  top      : 0;
+  right    : 0;
+  bottom   : 0;
+  left     : 0;
+  z-index  : 550;
+}
+
+.left-drawer > header > form {
+  display: -webkit-flex;
+  display:         flex;
+  height: 50px;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 40px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.left-drawer > header > form.focus {
+  box-shadow: : 0 3px 4px rgba(0, 0, 0, 0.15);
+}
+
+.left-drawer > header > form input {
+  font-size: 20px;
+  background: none;
+  color: #5a6674;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  border: none;
+  appearance: none;
+  outline: none;
+}
+
+.left-drawer > header > form input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.left-drawer > header > form button {
+  width: 20px;
+  height: 50px;
+  padding: 0;
+  margin-right: 10px;
+  line-height: 50px;
+  border: none;
+  background: none;
+  outline: none !important;
+  cursor: pointer;
+}
+
+
+/* ユーザー検索 */
+
+.user-search-template {
+  display: none;
+}
+
+#nav-search-users .media {
+  padding: 16px;
+  cursor: pointer;
+}
+
+#nav-search-users .media:hover {
+  background-color:#59b1eb;
+}
+
+#nav-search-users .media-body {
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+}
+
+#nav-search-users .media-body span {
+  -webkit-flex-grow: 1;
+          flex-grow: 1;
+  margin-top: 0;
+  line-height: 40px;
+  font-size: 16px;
+}
+
+#nav-search-users .media .add-favorite-user,
+#nav-search-users .media .del-favorite-user {
+  display: none;
+}
+
+#nav-search-users .media.add .add-favorite-user {
+  display: block;
+}
+#nav-search-users .media.del .del-favorite-user {
+  display: block;
+}
+
+
+/* ツイート */
+
+.tweet-template {
+  display : none;
+}
+
+.tweet {
+  margin : 10px;
+}
+
+.tweet-head {
+  position : relative;
+}
+
+#nav-twitter .profile-img {
+  position      : absolute;
+  width         : 40px;
+  height        : 40px;
+  border-radius : 20px;
+}
+
+#nav-twitter .user-name {
+  padding-left : 50px;
+  font-size    : 15px;
+  font-weight  : bold;
+}
+
+#nav-twitter .date {
+  padding-left : 50px;
+}
+
+#nav-twitter .body {
+  padding-left : 50px;
+}
+
+
+/* ツイートの画像分割 */
+
+.photos_1 img,
+.photos_2 img,
+.photos_3 img,
+.photos_4 img {
+  position          : absolute;
+  top               : 50%;
+  left              : 50%;
+  min-width         : 100%;
+  min-height        : 100%;
+  -webkit-transform : translate(-50%, -50%);
+  -ms-transform : translate(-50%, -50%);
+  transform : translate(-50%, -50%);
+}
+
+.photos_1,
+.photos_2,
+.photos_3,
+.photos_4 {
+  width  : 100%;
+  height : 300px;
+}
+
+.photos_img_wrapper_0,
+.photos_img_wrapper_1,
+.photos_img_wrapper_2,
+.photos_img_wrapper_3 {
+  position     : relative;
+  border-color : transparent;
+  border-style : solid;
+  border-width : 2px;
+  overflow     : hidden;
+  box-sizing   : border-box;
+}
+
+.photos_1 .photos_img_wrapper_0 {
+  width  : 100%;
+  height : 300px;
+}
+
+.photos_2 .photos_img_wrapper_0 {
+  float  : left;
+  width  : 70%;
+  height : 300px;
+}
+.photos_2 .photos_img_wrapper_1 {
+  width  : 30%;
+  height : 300px;
+}
+
+.photos_3 .photos_img_wrapper_0 {
+  float  : left;
+  width  : 70%;
+  height : 300px;
+}
+.photos_3 .photos_img_wrapper_1,
+.photos_3 .photos_img_wrapper_2 {
+  width  : 30%;
+  height : 150px;
+}
+
+.photos_4 .photos_img_wrapper_0 {
+  float  : left;
+  width  : 70%;
+  height : 300px;
+}
+.photos_4 .photos_img_wrapper_1,
+.photos_4 .photos_img_wrapper_2,
+.photos_4 .photos_img_wrapper_3 {
+  width  : 30%;
+  height : 100px;
+}
+
+.search-option {
+  position: absolute;
+  text-align: right;
+  top: 10px;
+  right: 15px;
+}
+
+.search-option div {
+  position: relative;
+  display: inline-block;
+  margin: 0 1px;
+  cursor: pointer;
+}
+.search-option div input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.01;
+  cursor: pointer;
+}
+.search-option div span {
+  position: absolute;
+  display: block;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  background: #929AA3;
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-transform: uppercase;
+  padding: 4px 7px;
+  border-radius: 12px;
+  top: -18px;
+  transition: all 0.2s ease-in-out;
+}
+.search-option div span::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top: 4px solid #929AA3;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+.search-option div:hover span {
+  opacity: 1;
+  top: -21px;
+}
+.search-option div label {
+  display: block;
+  cursor: pointer;
+}
+.search-option div svg {
+  height: 20px;
+  width: 20px;
+  fill: #5a6674;
+  opacity: 0.6;
+  transition: all 0.2s ease-in-out;
+  pointer-events: none;
+}
+.search-option div:hover svg {
+  opacity: 1;
+}
+.search-option div input:checked + label svg {
+  fill: #e24040;
+  opacity: 0.9;
+}
+.search-option div input:checked + label span {
+  background: #e24040;
+}
+.search-option div input:checked + label span::after {
+  border-top-color: #e24040;
+}
+
+
+/*アイコンのスペース*/
+#nav-open {
+  display: inline-block;
+  width: 30px;
+  height: 22px;
+  vertical-align: middle;
+}
+
+/*ハンバーガーアイコン*/
+#nav-open span, #nav-open span:before, #nav-open span:after {
+  position: absolute;
+  height: 3px;/*線の太さ*/
+  width: 25px;/*長さ*/
+  border-radius: 3px;
+  background: #555;
+  display: block;
+  content: 'f002';
+  cursor: pointer;
+}
+#nav-open span:before {
+  bottom: -8px;
+}
+#nav-open span:after {
+  bottom: -16px;
+}
+
+/*閉じる用カバー*/
+#nav-close {
+  display: none;/*隠しておく*/
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: .3s ease-in-out;
+}
+
+/*中身*/
+#nav-content {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 90%;
+  max-width: 450px;/*最大幅*/
+  height: 100%;
+  background: #fff;/*背景色*/
+  transition: .3s ease-in-out;
+  -webkit-transform: translateX(-105%);
+  transform: translateX(-105%);/*左に隠くす*/
+}
+
+/*チェックが入ったらもろもろ表示*/
+#nav-input:checked ~ #nav-close {
+  display: block;/*カバーを表示*/
+  opacity: .5;
+}
+
+#nav-input:checked ~ #nav-content {
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);/*中身を表示*/
+  box-shadow: 6px 0 25px rgba(0,0,0,.15);
+}
+
+.peke {
+  background-position: -35px 0;
+}
+.right-nav-drawer {
+  display: none;
+  /* background-image: url("../img/kumo.jpg"); */
+  background-color: white;
+  position: absolute;
+  top: 0px;
+  right:0;
+  width:450px;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  z-index: 1000;
+}
+
+.right-nav-drawer > header {
+  padding: 10px;
+  background-color: #fafafa;
+  border-bottom:0.5px solid #ccc;
+}
+
+.right-nav-drawer > footer {
+  position: absolute;
+  bottom: 0px;
+  padding: 10px;
+  width: 100%;
+  background-color: #FFFFFF;
+  border-top:0.5px solid #ccc;
+}
+
+#chat-roomname{
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align:center;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.fas.fa-chevron-left{
+  color:dodgerblue;
+  font-size: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+
+
+#menu-circle {
+  display: block;
+  width:35px;
+  height: 35px;
+  position: absolute;
+  top:10px;
+  right:10px;
+  cursor: pointer;
+  z-index: 200;
+}
+
+
+#video{
+  display:none;
+}
+#video.open{
+  display:block;
+}
+
+
+#Incoming{
+  height:140px;
+  position:absolute;
+  bottom:0;
+}
+
+@media (max-width: 576px) {
+  .gmnoprint {
+    display:none;
+  }
+  #eventButton {
+    bottom: 20px !important;
+  }
+  #video-friends{
+    overflow: auto;
+    max-height: calc(100% - 54px) !important;
+  }
+  #sampleModal .modal-body {
+    height: calc(100% - 57px);
+  }
+  #make-call {
+    height: calc(100% - 42px);
+  }
+}
+
+#video-friends{
+  overflow: auto;
+  max-height: 300px;
+}
+
+#video-friends .media:hover {
+  cursor: pointer;
+  background-color:#59b1eb;
+}
+
+/*#nav-tab{
+position: absolute;
+top: 90px;
+left: 338px;
+background: white;
+transform: rotate(90deg);
+z-index: 10000;
+}*/
+
+
+
+#chat-control {
+  /* position: absolute;
+  top: 10px;
+  right: 20px;
+  left: 20px;
+  height: 90px;
+  overflow: hidden; */
+  max-width: 100%;
+}
+#chatLog {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  bottom: 50px;
+  left: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#chat-form{
+  display: -webkit-flex;
+  display:         flex;
+}
+#msg{
+  -webkit-flex-grow: 1;
+          flex-grow: 1;
+  margin-right: 10px;
+  border:none;
+  border-radius:10px;
+  box-shadow: none;
+  padding: 2px 8px;
+}
+#send{
+}
+
+#menu-circle                 .circleMenu-item {
+  opacity    : 0;
+  transition : opacity 500ms;
+}
+#menu-circle.circleMenu-open .circleMenu-item {
+  opacity : 1;
+}
+
+#eventButton{
+  right: 15px;
+  bottom: 115px;
+  position: absolute;
+  z-index: 100;
+}
+    .wrapper{
+      width: 100%;
+      margin: 30px auto;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .text_wrapper{
+      position: relative;
+      margin-bottom: 45px;
+    }
+    .text{
+      height: 90px;
+      overflow: hidden;
+    }
+    .show_more{
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      width: 100%;
+      height: 30px;
+      padding-top: 60px;
+      text-align: center;
+      line-height: 30px;
+      background: linear-gradient(180deg, rgb(255, 255, 255,0) 0%, rgb(255, 255, 255,1) 70%);
+      cursor: pointer;
+      transition: bottom 0.2s;
+    }
+    .active{
+      background: none;
+      bottom: -30px;
+    }
+    .wiki-title{
+      font-size: 20px;
+    }
+
+
+/* dl.wiki-dl {margin:0;padding:.5em;width:460px;background-color:#fff;font-size:1em;font-family:Georgia, "Times New Roman", Times, serif;}
+dt {margin:0;padding:.5em;font-weight:bold;background-color:#e0e0e0;}
+dd {margin:0;padding:0;padding-top:.5em;padding-bottom:.5em;}
+dd .wiki-content {padding-left:.5em;border-left:1px solid #333;font-size:.9em;clear:both;} */
+
+
+.adp-warnbox {
+  display: none;
+}
+
+#chatLog {
+  overflow-x            : hidden;
+  overflow-y            : auto;
+  text-align            : justify;
+  word-break            : break-all;
+  background-attachment : fixed;
+  background-image      : url('/resources/img/talks/default.png');
+  background-position   : center;
+  background-repeat     : no-repeat;
+  background-size       : cover;
+}
+#chatLog { background-image : none; }
+
+#chatLog .message {
+  display       : -webkit-flex;
+  display       :         flex;
+  margin-top    : 16px;
+  margin-bottom : 16px;
+}
+#chatLog .message div.body {
+  position           : relative;
+  -webkit-align-self : flex-start;
+          align-self : flex-start;
+  min-height         : 32px;
+  padding            : 4px 10px;
+  border-radius      : 12px;
+  box-shadow         : 0 0 4px rgba(0,0,0,0.2);
+}
+#chatLog .message div.body::before {
+  position      : absolute;
+  top           : 0;
+  width         : 0;
+  height        : 0;
+  border-top    : 8px solid transparent;
+  border-bottom : 8px solid transparent;
+  content       : '';
+}
+#chatLog .message a.body {
+  position           : relative;
+  -webkit-align-self : flex-start;
+          align-self : flex-start;
+  min-height         : 32px;
+  padding-top        : 4px;
+}
+#chatLog .message a.body img { border-radius : 12px; }
+#chatLog .message .date {
+  -webkit-align-self : flex-end;
+          align-self : flex-end;
+  font-size          : 10px;
+  font-weight        : 500;
+  color              : #ffffff;
+  word-break         : keep-all;
+}
+#chatLog .message .date { color : #333333; }
+
+#chatLog .sys.message {
+  -webkit-justify-content : center;
+          justify-content : center;
+}
+#chatLog .sys.message div {
+  position         : relative;
+  padding          : 4px 10px;
+  font-size        : 12px;
+  font-weight      : 500;
+  line-height      : 1.5;
+  color            : #ffffff;
+  text-align       : center;
+  background-color : rgba(0,0,0,0.1);
+  border-radius    : 12px;
+}
+#chatLog .sys.message div {
+  color            : #333333;
+  background-color : rgba(0,0,0,0.05);
+}
+
+#chatLog .left.message {
+  -webkit-flex-direction : row;
+          flex-direction : row;
+}
+#chatLog .left.message figure {
+  position : relative;
+  margin   : 0;
+}
+#chatLog .left.message figure a {
+  position      : relative;
+  display       : block;
+  width         : 32px;
+  height        : 32px;
+  border-radius : 16px;
+}
+#chatLog .left.message figure a img {
+  position      : absolute;
+  top           : 0;
+  right         : 0;
+  bottom        : 0;
+  left          : 0;
+  width         : 32px;
+  height        : 32px;
+  border-radius : 16px;
+}
+#chatLog .left.message figure a i {
+  position         : absolute;
+  top              : 0;
+  right            : 0;
+  bottom           : 0;
+  left             : 0;
+  width            : 32px;
+  height           : 32px;
+  padding-left     : 3px;
+  color            : #218838;
+  line-height      : 32px;
+  text-align       : center;
+  background-color : rgba(0,0,0,0.3);
+  border-radius    : 16px;
+  opacity          : 0;
+  transition       : opacity 300ms ease-out;
+}
+#chatLog .left.message figure a:hover i {
+  opacity : 1;
+}
+#chatLog .left.message figure figcaption {
+  position    : absolute;
+  top         : -2px;
+  left        : 40px;
+  font-size   : 12px;
+  line-height : 12px;
+  color       : #ffffff;
+  word-break  : keep-all;
+  white-space : pre;
+}
+#chatLog .left.message figure figcaption { color : #333333; }
+#chatLog .left.message div.body {
+  margin           : 12px 4px 0 12px;
+  background-color : #ffffff;
+}
+#chatLog .left.message div.body::before {
+  left          : -16px;
+  border-right  : 16px solid #ffffff;
+  border-left   : 8px solid transparent;
+  transform     : rotate(35deg);
+}
+#chatLog .left.message a.body { margin : 12px 4px 0 12px; }
+
+#chatLog .left.message div.body         { background-color   : #eeeeee; }
+#chatLog .left.message div.body::before { border-right-color : #eeeeee; }
+
+#chatLog .right.message {
+  -webkit-flex-direction : row-reverse;
+          flex-direction : row-reverse;
+}
+#chatLog .right.message div.body {
+  margin           : 0 8px 0 4px;
+  background-color : #3399ff;
+  color: #FFFFFF;
+}
+#chatLog .right.message div.body::before {
+  right        : -16px;
+  border-right : 8px solid transparent;
+  border-left  : 16px solid #3399ff;
+  transform    : rotate(-35deg);
+}
+#chatLog .right.message a.body { margin : 0 8px 0 4px; }
+
+
+
+#user-setting-modal .modal-dialog {
+  height : 100%;
+  margin : 0;
+}
+
+#user-setting-modal .modal-content {
+  display                : -webkit-flex;
+  display                :         flex;
+  -webkit-flex-direction : column;
+          flex-direction : column;
+  height                 : 100%;
+  border-width           : 0;
+  border-radius          : 0;
+}
+
+#user-setting-modal .modal-content .modal-body {
+  position               : relative;
+  display                : -webkit-flex;
+  display                :         flex;
+  -webkit-flex-direction : column;
+          flex-direction : column;
+  -webkit-flex-grow      : 1;
+          flex-grow      : 1;
+  padding                : 0;
+}
+
+#user-setting-modal .modal-content .modal-footer {
+  padding-top    : 10px;
+  padding-bottom : 10px;
+}
+
+#user-setting-modal .modal-content .modal-body .row {
+  position : absolute;
+  top      : 0;
+  right    : 15px;
+  bottom   : 0;
+  left     : 15px;
+}
+
+#user-setting-modal .modal-content .modal-body #setting-menu {
+  height         : 100%;
+  padding-top    : 15px;
+  padding-bottom : 15px;
+  border-right   : 1px solid #e5e5e5;
+}
+
+#user-setting-modal .modal-content .modal-body #setting-menu a          { text-align : center; }
+#user-setting-modal .modal-content .modal-body #setting-menu .fa + span { display    : none;   }
+
+@media (min-width: 992px) {
+  #user-setting-modal .modal-content .modal-body #setting-menu a          { text-align : left;   }
+  #user-setting-modal .modal-content .modal-body #setting-menu .fa + span { display    : inline; }
+}
+
+#user-setting-modal .modal-content .modal-body #setting-body {
+  position   : relative;
+  height     : 100%;
+  overflow-y : auto;
+}
+
+#user-setting-modal .modal-content .modal-body #setting-body .tab-content {
+  position       : absolute;
+  top            : 0;
+  right          : 0;
+  bottom         : 0;
+  left           : 0;
+  width          : 90%;
+  padding-top    : 15px;
+  padding-bottom : 15px;
+  margin-right   : auto;
+  margin-left    : auto;
+}
+
+#user-setting-modal .modal-content .modal-body #setting-body .img {
+  display                 :         flex;
+  display                 : -webkit-flex;
+          align-items     : center;
+  -webkit-align-items     : center;
+          justify-content : center;
+  -webkit-justify-content : center;
+          flex-wrap       : wrap;
+  -webkit-flex-wrap       : wrap;
+}
+
+#user-setting-modal .modal-content .modal-body #setting-body .img img {
+  width         : 128px;
+  height        : 128px;
+  margin-right  : 15px;
+  margin-bottom : 20px;
+  cursor        : pointer;
+  border        : 1px solid #e7e7e7;
+  border-radius : 64px;
+}
+
+#user-setting-modal .modal-content .modal-body #setting-body .img span {
+  margin-bottom : 15px;
+  font-size     : 16px;
+}
+
+#user-setting-modal .modal-content .modal-body #setting-body a[href='#user-unsubscribe-dialog'] {
+  margin-top    : 30px;
+  margin-bottom : 30px;
+}
+
+@media (min-width: 576px) {
+  #user-setting-modal .modal-dialog {
+    height : 90vh;
+    margin : 5vh auto;
+  }
+  #user-setting-modal .modal-content {
+    height        : 100%;
+    border-width  : 1px;
+    border-radius : 6px;
+  }
+  #user-setting-modal .modal-content .modal-body #setting-body .tab-content {
+    width : 70%;
+  }
+}

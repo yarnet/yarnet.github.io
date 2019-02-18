@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>YarNet</title>
+
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="description" content="YarNetは、観光地の情報を手早く収集できるアプリケーションです。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightbox2@2.10.0/dist/css/lightbox.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/top.css">
+  <link rel="stylesheet" href="css/map.css">
+  <link rel="stylesheet" href="css/signup.css">
+  <link rel="stylesheet" href="css/signin.css">
+  <link rel="stylesheet" href="css/video.css">
+  <link rel="stylesheet" href="css/favorite_spots.css">
+  <link rel="stylesheet" href="css/favorite_users.css">
+</head>
+<body>
+  <header>
+  </header>
+
+  <main>
+    <section class="content" id="top-content">
+      <header class="mb-auto w-100">
+        <div class="d-flex flex-wrap">
+          <h3>YarNet</h3>
+          <nav class="ml-auto">
+            <button class="btn btn-link" type="button" data-toggle="transition" data-target="#signin-content">ログイン</button>
+            <button class="btn btn-link" type="button" data-toggle="transition" data-target="#signup-content">新規登録</button>
+          </nav>
+        </div>
+      </header>
+
+      <h1>YarNet</h1>
+
+      <p class="lead mt-2 mb-4">
+        YarNetは、観光地の情報を手早く収集できるアプリケーションです。
+      </p>
+
+      <button class="btn btn-secondary btn-lg" type="button" data-toggle="transition" data-target="#map-content">利用を開始する</button>
+
+      <footer class="mt-auto">
+        <p>
+          <small>&copy; 2018-2019 www.yarnet.ml</small>
+        </p>
+      </footer>
+    </section>
+
+    <section class="content" id="map-content">
+
+
+      <header>
+        <!-- 左上部ドロワー -->
+        <div class="left-drawer">
+          <header>
+            <form id="search_form" action="#" method="post">
+              <button id="map_button" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+              <input id="address" type="text" value="京都駅" placeholder="検索キーワード">
+            </form>
+            <form id="search-user-form" action="#" method="post" style="display: none;">
+              <button type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+              <input type="text" value="" placeholder="ユーザー検索">
+            </form>
+            <div class="left-drawer-toggle">
+              <i class="fas fa-search fa-2x"></i>
+            </div>
+          </header>
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-twitter-tab" data-toggle="tab" href="#nav-twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-wikipedia-tab" data-toggle="tab" href="#nav-wikipedia">
+                <i class="fab fa-wikipedia-w"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#nav-contact">
+                <i class="fas fa-hotel"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#nav-route">
+                <!-- アイコン、とりあえず -->
+                <i class="fas fa-walking"></i>
+              </a>
+            </li>
+            <li class="flex-grow-1"></li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#nav-search-users">
+                <i class="fas fa-user"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="nav-twitter">
+            </div>
+            <div class="tab-pane fade" id="nav-wikipedia">
+              <div class="wiki">
+                <div id="refere"></div>
+              </div>
+              <div id="word"></div>
+            </div>
+            <div class="tab-pane fade" id="nav-contact">
+              <div class="contact">
+                <div id="hotel_info"></div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-route">
+              <div class="route">
+                <div id="route-panel">
+                  <div class='route-massage'>
+                    <span>位置情報をオンにすると</span>
+                    <div>目的地までのルートが表示されます</div>
+                  </div>
+                  <div id="geoButtonMessage">
+                    <input type="button" class="btn btn-outline-primary invisible geo_button" id="create_route" value="ピンを現在地に">
+                    <input type="button" class="btn btn-outline-danger invisible geo_button" id="delete_route" value="ルート削除">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-search-users">
+            </div>
+          </div>
+        </div>
+
+        <ul id="menu-circle">
+          <li><i class="fas fa-plus-circle fa-2x"></i></li>
+          <li class="circleMenu-item">
+            <button type="button" class="btn btn-primary" title="ビデオチャット" data-toggle="modal" data-target="#sampleModal">
+              <i class="fas fa-phone"></i>
+            </button>
+          </li>
+          <li class="circleMenu-item">
+            <button type="button" class="btn btn-primary" id="right-btn" title="テキストチャット">
+              <i class="fas fa-comments"></i>
+            </button>
+          </li>
+        </ul>
+
+        <!--右上部ドロワー-->
+        <!--<a class="right-btn"></a>-->
+        <!--テキストチャット-->
+        <div class="right-nav-drawer">
+          <header>
+            <div class="row">
+              <div class="col-2">
+                <a href="#" id = chat-back><i class="fas fa-chevron-left"></i></a>
+              </div>
+              <div class="col-8" id = chat-roomname>
+                ルームなし
+              </div>
+              <div class="col-2"></div>
+            </div>
+
+          </header>
+
+
+
+          <div id="chatLog">
+          </div>
+
+        <footer>
+          <form id="chat-form" action="#" method="post">
+            <input type="text" id="msg" placeholder="メッセージを入力">
+            <button type="submit" id="send" class="btn btn-primary rounded-circle p-0" style="width:2rem;height:2rem;">
+              <i class="fab fa-telegram-plane"></i>
+            </button>
+          </form>
+        </footer>
+        </div>
+      </header>
+
+      <button id="eventButton" class="btn btn-primary rounded-circle p-0" style="width:2rem;height:2rem;">
+        <i class="fas fa-crosshairs"></i>
+      </button>
+
+      <div id="map"></div>
+
+      <div id="infowindow-content">
+        <img class="place-icon" src="#" alt="" width="16" height="16">
+        <div class="place-body">
+          <div class="place-title"></div>
+          <div class="place-country"></div>
+          <div class="place-address"></div>
+          <button class="btn btn-success btn-sm btn-block add-favorite-spot" type="button">
+            お気に入りに追加する
+          </button>
+          <button class="btn btn-danger btn-sm btn-block del-favorite-spot" type="button">
+            お気に入りを解除する
+          </button>
+        </div>
+      </div>
+
+      <!-- モーダル・ダイアログ -->
+      <div class="modal fade" id="sampleModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">　</h5>
+              <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+            </div>
+            <div class="modal-body">
+              <!--ビデオチャット-->
+
+
+              <p>ビデオ通話 ID : <span id="my-id">...</span></p>
+              <form id="make-call">
+                <div class="form-group row">
+                <div class="col-10">
+                  <input type="text" class="form-control" id="callto-id" placeholder="相手のID">
+                </div>
+                <div class="col-2">
+                <button href="#" type="submit" class="btn btn-success"><i class="fas fa-phone-volume"></i></button>
+                </div>
+                </div>
+                <div id="video-friends">
+                </div>
+              </form>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="favorite-spots-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <ul class="nav nav-tabs w-100">
+                <li class="nav-item">
+                  <a class="nav-link active" id="nav-spot-tab" data-toggle="tab" href="#nav-spot">
+                    <h5 class="modal-title">お気に入り観光地</h5>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="nav-users-tab" data-toggle="tab" href="#nav-users">
+                    <h5 class="modal-title">お気に入りユーザー</h5>
+                  </a>
+                </li>
+              </ul>
+              <button type="button" class="close" data-dismiss="modal">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="nav-spot">
+                </div>
+                <div class="tab-pane fade" id="nav-users">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="user-setting-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">ユーザー設定</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-3" id="setting-menu">
+                  <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#profile" data-toggle="tab">
+                        <i class="fa fa-user fa-fw"></i> <span>プロフィール</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#password" data-toggle="tab">
+                        <i class="fa fa-key fa-fw"></i> <span>パスワード</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-9" id="setting-body">
+                  <form class="tab-content" action="#" method="post">
+                    <div class="tab-pane fade show active" id="profile">
+                      <div class="form-group">
+                        <label for="user-setting-name">ユーザー名</label>
+                        <input class="form-control" id="user-setting-name" type="text" name="name">
+                      </div>
+                      <div class="form-group">
+                        <label for="user-setting-email">メールアドレス</label>
+                        <input class="form-control" id="user-setting-email" type="text" name="email">
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="password">
+                      <div class="form-group">
+                        <label for="user-setting-password">パスワード</label>
+                        <input class="form-control" id="user-setting-password" type="password" name="password">
+                      </div>
+                      <div class="form-group">
+                        <label for="user-setting-password-confirmation">パスワードの確認</label>
+                        <input class="form-control" id="user-setting-password-confirmation" type="password" name="password_confirmation">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              <button type="button" class="btn btn-primary">保存する</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <article class="tweet-template">
+        <div class="tweet-head">
+          <img class="profile-img" src="" alt="">
+          <div class="user-name"></div>
+          <div class="screen-name"></div>
+          <div class="date"></div>
+          <div class="body"></div>
+        </div>
+        <div class="tweet-body">
+        </div>
+      </article>
+
+      <div class="user-search-template">
+        <div class="user media">
+          <img class="mr-3" src="#" alt="" width="40" height="40">
+          <div class="media-body">
+            <span></span>
+            <button class="btn btn-success btn-sm add-favorite-user" type="button">
+              お気に入りに追加する
+            </button>
+            <button class="btn btn-danger btn-sm del-favorite-user" type="button">
+              お気に入りを解除する
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer id=Incoming>
+        <div id="video-alert" class="alert alert-info alert-dismissible fade" role="alert">
+          <button type="submit" class="btn btn-success" value="応答" id="answer-call">応答</button>
+          <button type="submit" class="btn btn-danger" value="拒否" id="no-call">拒否</button>
+        </div>
+      </footer>
+
+
+
+    </section>
+
+    <section class="content" id="signup-content">
+      <header>
+        <button class="close" type="button" data-toggle="goBackward">
+          <i class="fas fa-times"></i>
+        </button>
+      </header>
+
+      <div class="content-body">
+        <img src="img/logo.png" alt="#" width="128" height="128">
+        <h1 class="h3 mt-4 mb-3 font-weight-normal">新規登録</h1>
+
+        <form class="w-100" action="#" method="post">
+          <input class="form-control" type="text" name="name" placeholder="ユーザー名">
+          <input class="form-control" type="text" name="email" placeholder="メールアドレス">
+          <input class="form-control" type="password" name="password" placeholder="パスワード">
+          <input class="form-control" type="password" name="password_confirmation" placeholder="パスワードの確認">
+
+          <button class="btn btn-primary btn-lg btn-block" type="submit">
+            新規登録
+          </button>
+        </form>
+
+        <p class="mt-5 mb-3">
+          <small>&copy; 2018-2019 www.yarnet.ml</small>
+        </p>
+      </div>
+    </section>
+
+    <section class="content" id="signin-content">
+      <header>
+        <button class="close" type="button" data-toggle="goBackward">
+          <i class="fas fa-times"></i>
+        </button>
+      </header>
+
+      <div class="content-body">
+        <img src="img/logo.png" alt="#" width="128" height="128">
+        <h1 class="h3 mt-4 mb-3 font-weight-normal">ログイン</h1>
+
+        <form class="w-100" action="#" method="post">
+          <input class="form-control" type="text" name="email" placeholder="メールアドレス">
+          <input class="form-control" type="password" name="password" placeholder="パスワード">
+
+          <button class="btn btn-primary btn-lg btn-block" type="submit">
+            ログイン
+          </button>
+        </form>
+
+        <p class="mt-5 mb-3">
+          <small>&copy; 2018-2019 www.yarnet.ml</small>
+        </p>
+      </div>
+    </section>
+
+    <section class="content" id="video-content">
+      <header>
+        <button class="close" id="end-call" type="button">
+          <i class="fas fa-times"></i>
+        </button>
+        <span data-toggle="goBackward"></span>
+      </header>
+
+      <div class="content-body">
+        <div class="videos">
+          <video class="t-video"              autoplay playsinline></video>
+          <video class="m-video" muted="true" autoplay playsinline></video>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+  </footer>
+
+  <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.10.0/dist/js/lightbox.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/zikes/circle-menu@master/jQuery.circleMenu.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0ZnNFaybm9baTvzoAU4tDeDS1eeh5TIw&libraries=places"></script>
+
+  <script src="cordova.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/top.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/signup.js"></script>
+  <script src="js/signin.js"></script>
+  <script src="js/video.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/favorite_spots.js"></script>
+  <script src="js/favorite_users.js"></script>
+</body>
+</html>

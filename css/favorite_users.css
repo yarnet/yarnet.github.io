@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+#favorite-spots-modal .user {
+  display                 : -webkit-flex;
+  display                 :         flex;
+  -webkit-justify-content : space-between;
+          justify-content : space-between;
+  padding                 : 15px;
+  background-color        : #fff;
+  border-top              : 1px solid #eee;
+  cursor                  : pointer;
+}
